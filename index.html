@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form
+        action="/action_page.php"
+        autocomplete="off"
+        method="post"
+        name="google-sheet"
+      >
+        <h3><center>Basic Information</center></h3>
+        <br /><br />
+        <label for="fname"><b>serial number</b></label
+        ><br />
+        <input type="text" id="fname" name="Fid" required />
+        <br /><br />
+
+        <label for="date"><b>Date</b></label>
+        <input type="date" id="date" name="date" />
+        <br /><br />
+
+        <p><b>Repaire Line</b></p>
+        <br />
+        <select name="Project" required>
+          <option value="no option selected">Select your option</option>
+          <option value="AIRSCALR">AIRSCALE</option>
+          <option value="AIRSCALR">AMBER</option>
+          <option value="AIRSCALR">AMOB</option>
+          <option value="AIRSCALR">CHILLE</option>
+          <option value="G">FRM 3.2</option>
+          <option value="3G">FSMF</option>
+          <option value="4G">GALAXY</option>
+          <option value="5G">GALVATRON</option>
+          <option value="5G">KYLN</option>
+          <option value="5G">MEDUSA</option>
+          <option value="5G">MICRO-WAVE</option>
+          <option value="5G">NODE-B</option>
+          <option value="5G">QUASAR</option>
+          <option value="5G">QUASAR-5.1</option>
+          <option value="5G">SMALL-CELL</option>
+        </select>
+
+        <br /><br />
+        <label for="uPname"><b>Project Name:</b></label
+        ><br />
+        <input type="text" placeholder="eg. Galaxy" name="Pname" required />
+        <br /><br />
+        <label for="Picture"><b>Select a file:</b></label
+        ><br />
+        <input type="file" id="myfile" name="Picture" required /><br /><br />
+        <button type="submit" name="Submit">Send to Database</button>
+      </form>
+    </div>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbyUvTcxAvVHcoPWZ6GNhuLvFNYsZXZOXnnvLm7AkjAuA-NGhBGLUQQpxjxtKfJYSBPI8Q/exec";
+      const form = document.forms["google-sheet"];
+
+      form.addEventListener("Submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>
+            alert("Thanks for Contacting us..! We Will Contact You Soon...")
+          )
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
